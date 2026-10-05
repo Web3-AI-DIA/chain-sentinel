@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: chain-sentinel
+Version: 0.1.0
+Summary: Multi-chain smart contract security scanner (EVM + Move), Termux-friendly.
+Author: Derrick Meredith
+Requires-Python: >=3.8

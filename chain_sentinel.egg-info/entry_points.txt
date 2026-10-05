@@ -1,0 +1,2 @@
+[console_scripts]
+chain-sentinel = sentinel.cli:main
