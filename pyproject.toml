@@ -1,0 +1,12 @@
+[project]
+name = "chain-sentinel"
+version = "0.1.0"
+description = "Multi-chain smart contract security scanner (EVM + Move), Termux-friendly."
+authors = [
+  { name = "Derrick Meredith" }
+]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.scripts]
+chain-sentinel = "sentinel.cli:main"
