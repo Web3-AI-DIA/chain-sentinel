@@ -41,9 +41,14 @@ Built for speed.
 
 ## 📦 Installation
 
-Inside any Python environment (Termux, Linux, macOS, WSL):
+Clone the repository:
 
 ```bash
+git clone https://github.com/Web3-AI-DIA/chain-sentinel.git
+cd chain-sentinel
+
+Install inside any Python environment (Termux, Linux, macOS, WSL):
+
 pip install .
 
 This installs the chain-sentinel CLI globally inside your active environment.
