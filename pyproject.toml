@@ -1,12 +1,24 @@
 [project]
 name = "chain-sentinel"
 version = "0.1.0"
-description = "Multi-chain smart contract security scanner (EVM + Move), Termux-friendly."
+description = "Multi-chain smart contract security scanner (EVM, Move, Midnight, Rust)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+
 authors = [
   { name = "Derrick Meredith" }
 ]
-requires-python = ">=3.8"
+
 dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Web3-AI-DIA/chain-sentinel"
+Source = "https://github.com/Web3-AI-DIA/chain-sentinel"
 
 [project.scripts]
 chain-sentinel = "sentinel.cli:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

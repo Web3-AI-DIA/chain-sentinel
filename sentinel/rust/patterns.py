@@ -1,7 +1,5 @@
 from typing import List, Dict
 
-# Pattern-based checks for Rust smart contracts (Solana, CosmWasm, NEAR, Substrate).
-
 RUST_PATTERNS: List[Dict[str, str]] = [
     {
         "name": "unsafe_block",

@@ -1,8 +1,5 @@
 from typing import List, Dict
 
-# Pattern-based checks for Compact smart contracts (Midnight Network).
-# Focus on capabilities, resources, access control, and state transitions.
-
 COMPACT_PATTERNS: List[Dict[str, str]] = [
     {
         "name": "public_entry_no_requires",

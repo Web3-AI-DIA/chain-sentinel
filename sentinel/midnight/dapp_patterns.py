@@ -1,8 +1,5 @@
 from typing import List, Dict
 
-# Pattern-based checks for Midnight dApp manifests and configs (.midnight.json).
-# Focus on agent permissions, zk suite config, privy rules, and endpoints.
-
 MIDNIGHT_DAPP_PATTERNS: List[Dict[str, str]] = [
     {
         "name": "missing_manifest_name",
