@@ -1,224 +1,110 @@
-# 🛡️ chain‑sentinel
-### Multi‑Chain Smart Contract Security Scanner
-### EVM • Move • Midnight (Compact + dApps) • Rust
+# Chain Sentinel
 
-chain‑sentinel is a Termux‑friendly, Python‑powered, multi‑chain security scanner designed for blockchain developers, auditors, and researchers.  
-It performs static analysis across multiple smart contract languages and dApp formats, detecting risky patterns, unsafe constructs, and misconfigurations.
+Chain Sentinel is a multi-chain smart contract security scanner designed to help developers identify vulnerabilities across diverse blockchain ecosystems. It provides a unified command-line interface for scanning EVM, Move, Midnight Compact, and Rust-based smart contracts using fast, pattern-driven analysis.
 
-Built for mobile auditing.  
-Built for multi‑chain ecosystems.  
-Built for speed.
+## Features
 
----
+- **Multi-chain support** — Scan EVM (`.sol`), Move (`.move`), Midnight Compact (`.compact`), and Rust smart contracts.
+- **Pattern-based vulnerability detection** — Lightweight, fast scanning using customizable rule patterns.
+- **Unified CLI tool** — Run scans from any directory with a single command.
+- **JSON output mode** — Integrate results into CI pipelines, dashboards, or automated tooling.
+- **Zero external dependencies** — Pure Python; no blockchain node required.
 
-## ⚡ Features
+## Installation
 
-- **EVM / Solidity scanning**  
-  Detects reentrancy risks, unsafe low‑level calls, auth issues, economic flaws, upgradeability hazards, and more.
-
-- **Move scanning (Aptos / Sui)**  
-  Flags unsafe entry functions, resource misuse, unchecked arithmetic, capability issues, and invariant risks.
-
-- **Midnight Network scanning**  
-  - **Compact smart contracts**  
-    Detects capability misuse, resource duplication, unsafe transitions, missing `requires`, and more.  
-  - **Midnight dApps**  
-    Scans `.midnight.json` manifests, agent configs, zk suite definitions, and privy rules.
-
-- **Rust smart contract scanning**  
-  Supports Solana, CosmWasm, NEAR, and Substrate patterns including unsafe blocks, unchecked arithmetic, CPI calls, account validation issues, and deserialization risks.
-
-- **Directory scanning**  
-  Recursively scans entire project folders.
-
-- **JSON output**  
-  Machine‑readable reports for CI pipelines and automated tooling.
-
-- **Zero external dependencies**  
-  Lightweight, fast, and portable.
-
----
-
-## 📦 Installation
-
-Clone the repository:
+Install Chain Sentinel from PyPI:
 
 ```bash
-git clone https://github.com/Web3-AI-DIA/chain-sentinel.git
-cd chain-sentinel
+pip install chain-sentinel
 
-Install inside any Python environment (Termux, Linux, macOS, WSL):
+Usage
 
-pip install .
+Basic scan
 
-This installs the chain-sentinel CLI globally inside your active environment.
-
-🚀 Usage
-
-Scan a single file
-
-chain-sentinel path/to/Contract.sol
-
-Scan a directory
-
-chain-sentinel path/to/project/
-
-Force a specific chain/language
-
-chain-sentinel file.compact --midnight
-chain-sentinel file.rs --rust
-chain-sentinel file.move --move
-chain-sentinel file.sol --evm
+chain-sentinel .
 
 JSON output
 
-chain-sentinel path/to/Contract.sol --json
+chain-sentinel . --json
 
-🔗 Supported Languages & File Types
+Example output
 
-Ecosystem
+=== ./contracts/Payment.compact ===
+[HIGH] [economic] Division detected; verify non-zero divisor and rounding. (line 50)
 
-File Types
+=== Summary ===
+Total findings: 1
+By severity:
+  HIGH: 1
+By category:
+  economic: 1
+By directory:
+  ./contracts: 1
 
-Description
+Expected Project Structure
 
-EVM / Solidity
+Chain Sentinel automatically scans supported file types inside your project:
+
+project/
+├── contracts/
+│   ├── MyContract.sol
+│   ├── Token.move
+│   ├── AccessControl.compact
+│   └── verifier.rs
+└── ...
+
+Supported Chains & Languages
+
+Chain / Platform
+
+File Type
+
+Analyzer
+
+Ethereum / EVM
 
 .sol
 
-Smart contracts for Ethereum, BSC, Polygon…
+Solidity pattern scanner
 
-Move
+Move (Aptos/Sui)
 
 .move
 
-Aptos & Sui modules
+Move pattern scanner
 
-Midnight Network
+Midnight
 
-.compact, .midnight.json
+.compact
 
-Compact contracts + Midnight dApp manifests
+Compact analyzer
 
-Rust Contracts
+Rust-based blockchains
 
 .rs
 
-Solana, CosmWasm, NEAR, Substrate
+Rust pattern scanner
 
-🧠 How It Works
+Extending Chain Sentinel
 
-chain‑sentinel uses pattern‑based static analysis to detect:
+Chain Sentinel is designed to be modular. You can:
 
-authorization flaws
+Add new pattern rules
 
-reentrancy risks
+Extend analyzers
 
-unsafe low‑level calls
+Add new chain support
 
-unchecked arithmetic
+Build custom CI integrations
 
-resource misuse
+Contributing
 
-capability misuse
+Contributions are welcome! Submit issues or pull requests on GitHub:
 
-state machine inconsistencies
+https://github.com/Web3-AI-DIA/chain-sentinel
 
-unsafe agent permissions
+License
 
-misconfigured zk suite definitions
-
-unsafe CPI calls
-
-missing account validation
-
-unsafe deserialization
-
-Each language has its own analyzer and pattern engine:
-
-sentinel/
-  core/
-  evm/
-  move/
-  midnight/
-    compact_patterns.py
-    compact_analyzer.py
-    dapp_patterns.py
-    dapp_analyzer.py
-  rust/
-
-📁 Example Output
-
-Human‑readable
-
-=== SimpleStaking.sol ===
-[MEDIUM] [reentrancy] Low-level call with value; check for reentrancy vulnerabilities. (line 88)
-[INFO]   [auth]       Owner-only function; check centralization and privilege risks. (line 12)
-
-JSON
-
-[
-  {
-    "severity": "MEDIUM",
-    "category": "reentrancy",
-    "message": "Low-level call with value; check for reentrancy vulnerabilities.",
-    "file": "SimpleStaking.sol",
-    "line": 88
-  }
-]
-
-🛠️ Roadmap
-
-v0.2.x
-
-Severity scoring engine
-
-Pattern categories in output
-
-Configurable rule sets
-
-Ignore lists
-
-Directory‑level summaries
-
-v0.3.x
-
-Bytecode scanning (EVM)
-
-Move AST scanning
-
-Compact AST scanning
-
-Rust AST scanning
-
-v0.4.x
-
-Plugin system
-
-CI integration templates
-
-VS Code extension
-
-Midnight Network developer tools integration
-
-🤝 Contributing
-
-Pull requests are welcome. To contribute:
-
-Fork the repository
-
-Create a feature branch
-
-Add tests for new analyzers or patterns
-
-Submit a PR
-
-📄 License
-
-MIT License — free to use, modify, and distribute.
-
-🧑‍💻 Author
-
-Derrick MeredithBlockchain Engineer • Smart Contract Auditor • Midnight Network DeveloperLeitchfield, KY
+Chain Sentinel is licensed under the MIT License.
 
 

@@ -15,6 +15,7 @@ dependencies = []
 [project.urls]
 Homepage = "https://github.com/Web3-AI-DIA/chain-sentinel"
 Source = "https://github.com/Web3-AI-DIA/chain-sentinel"
+Issues = "https://github.com/Web3-AI-DIA/chain-sentinel/issues"
 
 [project.scripts]
 chain-sentinel = "sentinel.cli:main"
